@@ -1,0 +1,32 @@
+.login{
+    background-image: url(../../asset/image/bg.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    min-height:100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    // margin-top: 100px;
+    .container{
+        border: 1px solid #ffffff;
+        margin-top:100px;
+    }
+
+    h1{
+        text-align: center;
+        color: #fff;
+    }
+    .ant-form-item-label > label{
+        color: #fff;
+        font-size: 18px;
+    }
+    .ant-checkbox + span{
+        color: #ffffff;
+    }
+}
+
+
+
+
+
