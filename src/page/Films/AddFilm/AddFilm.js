@@ -5,6 +5,7 @@ import {
   Form,
   Input,
   InputNumber,
+  message,
   Radio,
   Select,
   Switch,
@@ -17,13 +18,16 @@ import moment from "moment";
 import { useDispatch } from "react-redux";
 import { themPhimUploadHinhAnhAction } from "../../../redux/actions/types/QuanLyPhimActions";
 import { GROUPID } from "../../../util/setting/config";
+import { useNavigate } from "react-router-dom";
 
 export default function AddFilm() {
+  const [form] = Form.useForm();
   const [componentSize, setComponentSize] = useState("default");
   const [img, setImg] = useState("");
   const onFormLayoutChange = ({ size }) => {
     setComponentSize(size);
   };
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   //Hook
   const formik = useFormik({
@@ -54,11 +58,27 @@ export default function AddFilm() {
 
       //goi API gui cac gia tri formData tu formik
       dispatch(themPhimUploadHinhAnhAction(formData));
+      form.resetFields();
+      message.success(
+        {
+          content: "Thêm phim thành công rồi nè ",
+          className: "message",
+          style: {
+            marginTop: "10vh",
+            fontSize: "20px",
+          },
+        },
+        setTimeout(() => {
+         navigate("/admin/films")
+          // setVisible(false);
+          // history is available by design in this.props when using react-router
+        }, 3000)
+      );
     },
   });
 
   const handleChangeDatePicker = (value) => {
-    let ngayKhoiChieu = moment(value).format("YYYY/MM/DD");
+    let ngayKhoiChieu = moment(value).format("DD/MM/YYYY");
     formik.setFieldValue("ngayKhoiChieu", ngayKhoiChieu);
   };
 
@@ -101,6 +121,7 @@ export default function AddFilm() {
         <div className="container">
           <h1>Thêm phim mới</h1>
           <Form
+            form={form}
             onSubmitCapture={formik.handleSubmit}
             labelCol={{
               span: 4,
@@ -133,7 +154,7 @@ export default function AddFilm() {
             </Form.Item>
             <Form.Item label="Ngày khởi chiếu">
               <DatePicker
-                format={"YYYY/MM/DD"}
+                format={"DD/MM/YYYY"}
                 onChange={handleChangeDatePicker}
               />
             </Form.Item>

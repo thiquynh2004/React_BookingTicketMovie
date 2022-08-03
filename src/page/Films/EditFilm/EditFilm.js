@@ -6,6 +6,7 @@ import {
   Form,
   Input,
   InputNumber,
+  message,
   Radio,
   Select,
   Switch,
@@ -22,13 +23,13 @@ import {
   themPhimUploadHinhAnhAction,
 } from "../../../redux/actions/types/QuanLyPhimActions";
 import { GROUPID } from "../../../util/setting/config";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function EditFilm(props) {
   const [componentSize, setComponentSize] = useState("default");
   const [img, setImg] = useState("");
   const { thongTinPhim } = useSelector((state) => state.QuanLyPhimReducer);
-
+  const navigate = useNavigate();
   console.log("thongTinPhim", thongTinPhim);
   //Call Api : kết nối vớsi Redux thông qua useDispatch thông qua useEffect
   const dispatch = useDispatch();
@@ -72,6 +73,21 @@ export default function EditFilm(props) {
       } 
       //Cập nhật phim 
       dispatch(capNhatPhimLoadAction(formData))
+      message.success(
+        {
+          content: "Cập nhật phim thành công",
+          className: "message",
+          style: {
+            marginTop: "10vh",
+            fontSize: "20px",
+          },
+        },
+        setTimeout(() => {
+          navigate("/admin/films")
+
+          // history is available by design in this.props when using react-router
+        }, 3000)
+      );
     },
   });
 
@@ -163,7 +179,7 @@ export default function EditFilm(props) {
             </Form.Item>
             <Form.Item label="Ngày khởi chiếu">
               <DatePicker
-                format={"YYYY/MM/DD"}
+                format={"DD/MM/YYYY"}
                 onChange={handleChangeDatePicker}
                 value={moment(formik.values.ngayKhoiChieu)}
               />

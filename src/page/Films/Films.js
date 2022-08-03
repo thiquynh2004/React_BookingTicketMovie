@@ -9,9 +9,12 @@ import {
 } from "../../redux/actions/types/QuanLyPhimActions";
 import moment from "moment";
 import { Navigate, NavLink } from "react-router-dom";
-import { EditOutlined, DeleteOutlined, CalendarOutlined } from "@ant-design/icons";
+import {
+  EditOutlined,
+  DeleteOutlined,
+  CalendarOutlined,
+} from "@ant-design/icons";
 import { USER_LOGIN } from "../../util/setting/config";
-// import "antd/dist/antd.css";
 import "./films.scss";
 const { confirm } = Modal;
 const { Search } = Input;
@@ -26,7 +29,7 @@ export default function Films() {
     dispatch(layDanhSachPhimAction());
   }, []);
 
-  const [setFilteredInfo] = useState({});
+  const [filteredInfo, setFilteredInfo] = useState({});
   const [sortedInfo, setSortedInfo] = useState({});
 
   const handleChange = (pagination, filters, sorter) => {
@@ -35,7 +38,7 @@ export default function Films() {
     setSortedInfo(sorter);
   };
   const data = arrFilmDefault;
-  const dateFormat = "YYYY/MM/DD";
+  const dateFormatList = ["DD/MM/YYYY", "DD/MM/YY"];
   const columns = [
     {
       title: "Id",
@@ -49,6 +52,7 @@ export default function Films() {
       title: "Tên phim",
       dataIndex: "tenPhim",
       key: "tenPhim",
+      filteredValue: filteredInfo.tenPhim || null,
       sorter: (a, b) => a.tenPhim.length - b.tenPhim.length,
       sortOrder: sortedInfo.columnKey === "tenPhim" ? sortedInfo.order : null,
       ellipsis: true,
@@ -91,9 +95,10 @@ export default function Films() {
           <Fragment>
             <Space direction="vertical" size={12}>
               <DatePicker
-                defaultValue={moment(films.ngayKhoiChieu, dateFormat)}
-                format={dateFormat}
+                defaultValue={moment(films.ngayKhoiChieu)}
+                format={dateFormatList}
               />
+               {/* <DatePicker defaultValue={moment(films.ngayKhoiChieu, dateFormatList[0])} format={dateFormatList} /> */}
             </Space>
           </Fragment>
         );
@@ -148,9 +153,9 @@ export default function Films() {
             <NavLink
               to={`/admin/films/show-time/${films.maPhim}/${films.tenPhim}`}
               className="showTime-film"
-              style={{ fontSize: "20px" , cursor: "pointer" }}
+              style={{ fontSize: "20px", cursor: "pointer" }}
             >
-            <CalendarOutlined />
+              <CalendarOutlined />
             </NavLink>
           </Fragment>
         );

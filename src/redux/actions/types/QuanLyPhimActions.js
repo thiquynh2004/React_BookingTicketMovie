@@ -6,7 +6,6 @@ export const layDanhSachPhimAction = (tenPhim='') => {
   return async (dispatch) => {
     try {
       const result = await quanLyPhimService.layDanhSachPhim(tenPhim);
-
       dispatch({
         type: SET_DANH_SACH_PHIM,
         arrFilms: result.data.content,
@@ -21,7 +20,6 @@ export const themPhimUploadHinhAnhAction = (formData) => {
   return async (dispatch) => {
     try {
       const result = await quanLyPhimService.themPhimUploadHinhAnh(formData);
-      alert("Thêm Phim thành công");
       console.log("result", result.data.content);
     } catch (error) {
       console.log(error.response?.data);
@@ -48,7 +46,6 @@ export const capNhatPhimLoadAction = (formData) => {
     return async (dispatch) => {
         try {
             const result = await quanLyPhimService.capNhatPhimLoad(formData);
-            alert("Cập nhật phim thành công")
             console.log(result.data.content)
         } catch (error) {
             console.log(error.response?.data);
@@ -59,7 +56,6 @@ export const xoaPhimAction = (maPhim) => {
     return async (dispatch) => {
         try {
             const result = await quanLyPhimService.xoaPhim(maPhim);
-            // alert("Xóa Phim thành công")
             dispatch(layDanhSachPhimAction())
             console.log(result.data.content)
         } catch (error) {

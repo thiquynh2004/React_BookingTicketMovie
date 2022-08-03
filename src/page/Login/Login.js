@@ -1,12 +1,14 @@
 import React from "react";
-import { Button, Checkbox, Form, Input } from "antd";
+import { Button, Checkbox, Form, Input, message } from "antd";
 import "./login.scss";
 import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { dangNhapAction } from "../../redux/actions/types/QuanLyNguoiDungActions";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { userLogin } = useSelector((state) => state.QuanLyNguoiDungReducer);
   console.log("userLogin", userLogin);
 
@@ -18,7 +20,22 @@ export default function Login() {
     onSubmit: (values) => {
       const action = dangNhapAction(values);
       dispatch(action);
+
       console.log("values", values);
+      message.success(
+        {
+          content: "Đăng nhập thành công",
+          className: "message",
+          style: {
+            marginTop: "10vh",
+            fontSize: "20px",
+          },
+        },
+        setTimeout(() => {
+         navigate("/admin/")
+        }, 1000)
+      );
+      
     },
   });
 
