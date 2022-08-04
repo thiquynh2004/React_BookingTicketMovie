@@ -38,20 +38,6 @@ export const layThongTinTaiKhoanAction = () => {
   };
 };
 
-// export const layDanhSachNguoiDungAction = () => {
-//   return async (dispatch) => {
-//     try {
-//       const result = await quanLyNguoiDungService.layDanhSachNguoiDung();
-//       console.log(result.data.content);
-//       dispatch({
-//         type:  SET_THONG_TIN_TIM_KIEM,
-//         thongTinTimKiem: result.data.content,
-//       });
-//     } catch (error) {
-//       console.log("error", error.response?.data);
-//     }
-//   };
-// };
 export const layDanhSachNguoiDungAction = () => {
   return async (dispatch) => {
     try {
@@ -79,20 +65,6 @@ export const capNhatThongTinNguoiDungAction= (formData) => {
   }
 }
 
-// export const timKiemNguoiDungAction = (tuKhoa) => {
-//   return async (dispatch) => {
-//     try {
-//       const result = await quanLyNguoiDungService.timKiemNguoiDung(tuKhoa);
-//       dispatch({
-//         type: SET_THONG_TIN_TIM_KIEM,
-//         thongTinTimKiem: result.data.content,
-//       });
-//       console.log(result.data.content);
-//     } catch (error) {
-//       console.log("error", error.response?.data);
-//     }
-//   };
-// };
 export const timKiemNguoiDungAction = (tuKhoa) => {
   return async (dispatch) => {
     try {

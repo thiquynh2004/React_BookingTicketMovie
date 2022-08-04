@@ -53,15 +53,12 @@ export default function AddUsers() {
         className: "message",
         style:{
           marginTop: '10vh',
-          width: '40px',
-          height: '40px',
         }
       })
       setTimeout(() => {
         navigate("/admin/users")
         // history is available by design in this.props when using react-router
      }, 3000)
-     
     },
   });
 

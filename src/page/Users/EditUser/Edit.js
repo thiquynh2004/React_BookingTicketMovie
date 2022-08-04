@@ -1,10 +1,10 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Button, Form, Input, Modal } from "antd";
+import { Button, Form, Input, message, Modal } from "antd";
 import { useFormik } from "formik";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   capNhatThongTinDanhSachNguoiDungAction,
   timKiemNguoiDungAction,
@@ -12,6 +12,7 @@ import {
 import { GROUPID } from "../../../util/setting/config";
 
 export default function Edit() {
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [visible, setVisible] = useState(false);
   const [componentSize, setComponentSize] = useState("default");
@@ -44,6 +45,17 @@ export default function Edit() {
       console.log("values", values);
       values.maNhom = GROUPID;
       dispatch(capNhatThongTinDanhSachNguoiDungAction(values));
+
+      message.success({
+        content: "Tài khoản được cập nhật rồi nha",
+        className: "message",
+        style:{
+          marginTop: '10vh',
+        }
+      })
+      setTimeout(() => {
+        navigate("/admin/users")
+     }, 3000)
     },
   });
   const showModal = () => {
@@ -60,7 +72,6 @@ export default function Edit() {
 
   const handleCancel = () => {
     setVisible(false);
-    // form.resetFields();
   };
   return (
     <div>

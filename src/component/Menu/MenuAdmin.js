@@ -26,7 +26,7 @@ export default function MenuAdmin() {
 
             <Menu.SubMenu className="sub-menu" key="sub2" mode="inline" icon= {<PlaySquareOutlined />} title='Show time'>
               <Menu.Item key='2.1' icon={<PlaySquareOutlined />}>
-                <NavLink to="/admin/films/show-time" className ="nav-link-item">Create show time</NavLink>
+                {/* <NavLink to="/admin/films/show-time" className ="nav-link-item">Create show time</NavLink> */}
               </Menu.Item>
               <Menu.Item className="sub-menu" key='2.2' icon={<FileAddOutlined />} >
                 <NavLink to='/admin/films/cinema-management' className ="nav-link-item">Cinema management</NavLink>
