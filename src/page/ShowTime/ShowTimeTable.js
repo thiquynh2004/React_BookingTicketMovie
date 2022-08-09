@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Button, DatePicker, Form, InputNumber, message, Radio, Select } from "antd";
 import { quanLyRapService } from "../../service/QuanLyRapService";
 import { useFormik } from "formik";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import moment from "moment";
 import { quanLyDatVeService } from "../../service/QuanLyDatVe";
 
@@ -11,7 +11,6 @@ export default function ShowTimeTable(props) {
   //tạo formik để map tất cả dữ liệu để post tạo lịch chiếu phim
 
   const { id } = useParams();
-  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
       maPhim: id,
@@ -38,8 +37,6 @@ export default function ShowTimeTable(props) {
         },
         setTimeout(() => {
        
-          // setVisible(false);
-          // history is available by design in this.props when using react-router
         }, 3000)
       );
     },

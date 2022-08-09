@@ -8,7 +8,7 @@ import {
   xoaPhimAction,
 } from "../../redux/actions/types/QuanLyPhimActions";
 import moment from "moment";
-import { Navigate, NavLink } from "react-router-dom";
+import { Navigate, NavLink} from "react-router-dom";
 import {
   EditOutlined,
   DeleteOutlined,
@@ -24,6 +24,7 @@ export default function Films() {
   const dispatch = useDispatch();
   const { userLogin } = useSelector((state) => state.QuanLyNguoiDungReducer);
   console.log("arrFilmDefault", arrFilmDefault);
+  // const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(layDanhSachPhimAction());

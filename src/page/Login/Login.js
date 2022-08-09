@@ -5,6 +5,7 @@ import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { dangNhapAction } from "../../redux/actions/types/QuanLyNguoiDungActions";
 import { useNavigate } from "react-router-dom";
+import { USER_LOGIN } from "../../util/setting/config";
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -12,6 +13,9 @@ export default function Login() {
   const { userLogin } = useSelector((state) => state.QuanLyNguoiDungReducer);
   console.log("userLogin", userLogin);
 
+  if(localStorage.getItem(USER_LOGIN)){
+    navigate("/admin");
+  }
   const formik = useFormik({
     initialValues: {
       taiKhoan: "",
