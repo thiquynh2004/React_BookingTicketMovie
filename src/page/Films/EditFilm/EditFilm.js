@@ -122,7 +122,7 @@ export default function EditFilm(props) {
         console.log(e.target.result);
         setImg(e.target.result);
       };
-      formik.setFieldValue("hinhAnh", file);
+      formik.setFieldValue("avatar", file);
     }
     console.log("file", file);
   };
@@ -130,7 +130,6 @@ export default function EditFilm(props) {
   return (
     <div>
       <MenuAdmin />
-
       <div className="content">
         <div className="container">
           <h1>Edit</h1>

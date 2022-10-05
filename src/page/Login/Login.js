@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Checkbox, Form, Input, message } from "antd";
+import { Button, Checkbox, Form, Input } from "antd";
 import "./login.scss";
 import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
@@ -26,19 +26,6 @@ export default function Login() {
       dispatch(action);
 
       console.log("values", values);
-      message.success(
-        {
-          content: "Đăng nhập thành công",
-          className: "message",
-          style: {
-            marginTop: "10vh",
-            fontSize: "20px",
-          },
-        },
-        setTimeout(() => {
-         navigate("/admin/")
-        }, 1000)
-      );
       
     },
   });
